@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <%= render 'shared/sidebar' %>
+    <div class="col-xs-9">
+      <h2>Book detail</h2>
+      
+      <table class="table">
+
+            <thead>
+              <th></th>
+              <th>Title</th>
+              <th>Opinion</th>
+            </thead> 
+
+            <tbody>
+              <tr>
+                <td><%= attachment_image_tag @book.user, :profile_image, format: 'jpeg', class: "img-square", fallback: "no_image.jpg", size: "60x60" %><%= link_to user_path(@book.user) do %><%= @book.user.name %><% end %></td>
+                <td><%= @book.title %></td>
+                <td><%= @book.body %></td>
+                <% if current_user == @book.user %>
+                <td><%= link_to "Edit", edit_book_path(@book), class:"btn btn-success" %></td>
+                <td><%= link_to "Destroy", book_path(@book), method: :delete, data: {confirm: "削除しますか？"}, class:"btn btn-danger" %></td>
+                <% end %>
+              </tr>
+            </tbody>
+        </table>
+    </div>
+  </div>
+</div>

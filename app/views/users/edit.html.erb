@@ -2,6 +2,8 @@
   <div class="row">
     <h2>User info</h2>
 
+    <%= render 'shared/user_error_message' %>
+
     <%= form_for(@user) do |f| %>
       <div class="field">
         <%= f.label :name %><br />
@@ -16,7 +18,7 @@
       </div>
 
       <div class="actions">
-        <%= f.submit "変更を保存" %>
+        <%= f.submit "Update User" %>
       </div>
     <% end %>
 
