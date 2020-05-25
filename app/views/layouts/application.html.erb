@@ -51,6 +51,16 @@
      <% if alert %>
         <p><%= alert %></p> 
      <% end %>
+     <div class="search_form">
+     <% if logged_in? %>
+      <%= form_tag(search_path, :method => 'get') do %>
+      <%= select_tag(:option1, options_for_select([["Users", "1"],["Books","2"]]))%>
+      <%= select_tag(:option2, options_for_select([["部分一致", "1"],["完全一致","2"]]))%> 
+      <%= text_field_tag :search %>
+      <%= submit_tag 'Search' %>
+      <% end %>
+     <% end %>
+    </div>
 </div>
     <%= yield %>
     <footer>
