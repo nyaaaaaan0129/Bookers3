@@ -11,6 +11,7 @@ before_action :correct_user, only: [:edit, :update]
   	@user = User.find(current_user.id)
   	@book = Book.find(params[:id])
   	@book_new = Book.new
+    @book_comment = BookComment.new
   end
 
   def create

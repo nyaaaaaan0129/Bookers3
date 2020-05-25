@@ -1,0 +1,10 @@
+<% if @book_comment.errors.any? %>
+  <div id="error_explanation" class="alert alert-danger">
+  <%= pluralize(@book_comment.errors.count, "error") %>
+    <ul>
+      <% @book_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -13,9 +13,36 @@
         <th>introduction</th>
         <td><%= @user.introduction %></td>
       </tr>
+      <tr>
+         <th>follows</th>
+           <td>
+             <%= link_to following_user_path(@user) do %>
+                  <%= @user.following.count %>following<% end %>
+           </td>
+        </tr>
+        <tr>
+         <th>followers</th>
+           <td>
+             <%= link_to followers_user_path(@user) do %>
+                  <%= @user.followers.count %>followers<% end %>
+           </td>
+        </tr>
     </table>
     <%= link_to "", edit_user_path(@user), class:"col-xs-12 btn btn-default glyphicon glyphicon-wrench" %>
   </div>
+
+  <% unless current_user == @user %>
+          <% if current_user.following?(@user) %>
+              <%= form_with(model: current_user.active_relationships.find_by(followed_id: @user.id), html: { method: :delete }, local: true) do |f| %>
+              <%= f.submit "Unfollow", class: "btn btn-info" %>
+              <% end %>
+          <% else %>
+               <%= form_with(model: current_user.active_relationships.build, local: true) do |f| %>
+                <div><%= hidden_field_tag :followed_id, @user.id %></div>
+                <%= f.submit "Follow", class: "btn btn-primary" %>
+                <% end %>
+           <% end %>
+      <% end %>
 
 
     <h2 class="new_book">New book</h2>
